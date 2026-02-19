@@ -259,6 +259,9 @@ function renderCalendar() {
             const spacer = document.createElement('div');
             spacer.className = 'month-spacer';
             spacer.setAttribute('aria-hidden', 'true');
+            const line = document.createElement('div');
+            line.className = 'month-separator-line';
+            spacer.appendChild(line);
             grid.appendChild(spacer);
         }
         row.appendChild(monthLabel);
