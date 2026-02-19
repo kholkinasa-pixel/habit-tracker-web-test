@@ -89,17 +89,16 @@
         }
         .month-spacer {
             width: 100vw;
+            max-width: 100vw;
             margin-left: calc(-50vw + 50%);
             padding: 12px 0;
             flex-shrink: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: stretch;
+            min-height: 25px;
         }
         .month-separator-line {
             height: 1px;
-            background: rgba(128, 128, 128, 0.35);
-            width: 100%;
+            min-height: 1px;
+            background: rgba(128, 128, 128, 0.5);
         }
         .month-label {
             font-size: 11px;
