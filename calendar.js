@@ -67,18 +67,26 @@ function toggleDropdown() {
     if (dd) dd.classList.toggle('open');
 }
 
+// Заголовок для обхода ngrok interstitial (free tier)
+const NGROK_HEADERS = {
+    'Accept': 'application/json',
+    'ngrok-skip-browser-warning': '69420'
+};
+
+function addNgrokParam(url) {
+    const sep = url.includes('?') ? '&' : '?';
+    return url + sep + 'ngrok-skip-browser-warning=69420';
+}
+
 async function loadHabits() {
     const userId = getUserId();
     if (!userId) return [];
-    const habitUrl = `${API_BASE}/api/users/${userId}/habit`;
+    const habitUrl = addNgrokParam(`${API_BASE}/api/users/${userId}/habit`);
     try {
         const res = await fetch(habitUrl, {
             method: 'GET',
             mode: 'cors',
-            headers: {
-                'Accept': 'application/json',
-                'ngrok-skip-browser-warning': 'true'
-            }
+            headers: NGROK_HEADERS
         });
         if (!res.ok) return [];
         const data = await res.json();
@@ -108,14 +116,12 @@ async function loadCalendarData(habitId) {
     if (habitId != null) {
         calendarUrl += `?habit_id=${habitId}`;
     }
+    calendarUrl = addNgrokParam(calendarUrl);
     try {
         const res = await fetch(calendarUrl, {
             method: 'GET',
             mode: 'cors',
-            headers: {
-                'Accept': 'application/json',
-                'ngrok-skip-browser-warning': 'true'
-            }
+            headers: NGROK_HEADERS
         });
         const contentType = res.headers.get('content-type') || '';
         if (!contentType.includes('application/json')) {
