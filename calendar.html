@@ -16,6 +16,7 @@
             padding: 16px;
             background: #F2F2F2;
             color: var(--tg-theme-text-color, #333);
+            overflow-x: hidden;
         }
         .habit-switcher {
             margin-bottom: 12px;
@@ -87,8 +88,18 @@
             align-items: center;
         }
         .month-spacer {
-            height: 12px;
+            width: 100vw;
+            margin-left: calc(-50vw + 50%);
+            padding: 12px 0;
             flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+        }
+        .month-separator-line {
+            height: 1px;
+            background: rgba(128, 128, 128, 0.35);
+            width: 100%;
         }
         .month-label {
             font-size: 11px;
